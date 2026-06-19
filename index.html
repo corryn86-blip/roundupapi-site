@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Round-Up API — Every cent reaches the charity</title>
 <meta name="description" content="Checkout round-ups rebuilt as infrastructure. The only round-up platform where the charity keeps 100% — the fee is billed to the merchant, never skimmed from the gift." />
+<link rel="canonical" href="https://roundupapi.com/" />
+<!-- Open Graph / social preview -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Round-Up API" />
+<meta property="og:title" content="Round-Up API — Every cent reaches the charity" />
+<meta property="og:description" content="Checkout round-ups rebuilt as infrastructure. The only round-up platform where the charity keeps 100% — the fee is billed to the merchant, never skimmed from the gift." />
+<meta property="og:url" content="https://roundupapi.com/" />
+<meta property="og:image" content="https://roundupapi.com/social-banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Round-Up API — Every cent reaches the charity" />
+<meta name="twitter:description" content="Checkout round-ups rebuilt as infrastructure. The charity keeps 100% — the fee is billed to the merchant, never skimmed from the gift." />
+<meta name="twitter:image" content="https://roundupapi.com/social-banner.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -319,6 +331,33 @@ section.story{padding:84px 0}
 .cta-final .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
 .cta-final .btn.ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
 
+/* ===== PILOT FORM ===== */
+.formcard{background:#fff;border:1px solid var(--rule);border-radius:20px;box-shadow:var(--shadow-lg);padding:34px;max-width:760px;margin:32px auto 0;text-align:left}
+.formcard h3{font-size:20px;margin-bottom:4px}
+.formcard .fsub{font-size:14.5px;color:var(--ink-soft);margin-bottom:24px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px 18px}
+@media(max-width:620px){.fgrid{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1 / -1}
+.field label{font-size:13px;font-weight:600;color:var(--ink)}
+.field label .req{color:#c0556b}
+.field input,.field select,.field textarea{
+  font-family:inherit;font-size:14.5px;color:var(--ink);background:var(--bg);
+  border:1px solid var(--rule-strong);border-radius:10px;padding:11px 13px;transition:border-color .16s,box-shadow .16s;width:100%;
+}
+.field textarea{resize:vertical;min-height:88px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(10,111,183,.13);background:#fff}
+.consent{grid-column:1 / -1;display:flex;gap:11px;align-items:flex-start;margin-top:4px;font-size:13.5px;color:var(--ink-soft)}
+.consent input{margin-top:3px;width:17px;height:17px;flex:none;accent-color:var(--blue)}
+.consent a{color:var(--blue);font-weight:600}
+.formcard .submit{margin-top:22px;width:100%;padding:15px;border:none;border-radius:12px;background:var(--navy);color:#fff;font-family:inherit;font-weight:700;font-size:15.5px;cursor:pointer;transition:background .16s,transform .12s}
+.formcard .submit:hover{background:var(--navy-2)}
+.formcard .submit:active{transform:scale(.99)}
+.formcard .submit:disabled{opacity:.6;cursor:default}
+.formnote{font-size:11.5px;color:var(--ink-faint);text-align:center;margin-top:14px;line-height:1.5}
+.formstatus{display:none;border-radius:12px;padding:16px 18px;font-size:14.5px;margin-top:18px;font-weight:600}
+.formstatus.ok{display:block;background:var(--good-soft);color:var(--good);border:1px solid #bfe6d4}
+.formstatus.err{display:block;background:#fdecef;color:#b03b54;border:1px solid #f3c9d3}
 footer{text-align:center;padding:42px 28px;background:#0a1622;color:#9fb0c4;font-size:13.5px;margin-top:0}
 footer .fbrand{color:#fff;font-weight:700;font-size:16px;margin-bottom:8px}
 footer .small{display:block;margin-top:12px;font-size:12px;color:#67788c;max-width:760px;margin-left:auto;margin-right:auto;line-height:1.5}
@@ -635,11 +674,96 @@ footer a{color:#9fc4e0;text-decoration:none}
   <div class="wrap reveal">
     <div class="cta-final">
       <h2>Be part of the founding pilot.</h2>
-      <p>We're inviting a small group of merchants to run Round-Up API on real checkouts before public launch. Development install, no App Store review, full flow end to end. Tell us your platform and rough monthly volume and we'll be in touch.</p>
-      <div class="btns">
-        <a class="btn solid" href="mailto:info@roundupapi.com?subject=Pilot%20Program%20Registration">Join the pilot</a>
-        <a class="btn ghost" href="mailto:info@roundupapi.com?subject=Register%20Interest%20-%20Round-Up%20API">Register interest</a>
-      </div>
+      <p>We're inviting a small group of merchants to run Round-Up API on real checkouts before public launch. Development install, no App Store review, full flow end to end. Fill in a few details and we'll be in touch.</p>
+    </div>
+
+    <div class="formcard">
+      <h3>Register your interest</h3>
+      <p class="fsub">Takes about a minute. The more you tell us, the faster we can confirm fit for the pilot.</p>
+
+      <form id="pilotForm" action="https://api.web3forms.com/submit" method="POST">
+        <!-- Web3Forms config -->
+        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+        <input type="hidden" name="subject" value="New pilot / interest registration — Round-Up API" />
+        <input type="hidden" name="from_name" value="Round-Up API website" />
+        <!-- honeypot anti-spam -->
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+
+        <div class="fgrid">
+          <div class="field">
+            <label for="name">Your name <span class="req">*</span></label>
+            <input id="name" type="text" name="Name" required autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="business">Business name <span class="req">*</span></label>
+            <input id="business" type="text" name="Business name" required autocomplete="organization" />
+          </div>
+          <div class="field">
+            <label for="email">Work email <span class="req">*</span></label>
+            <input id="email" type="email" name="Email" required autocomplete="email" />
+          </div>
+          <div class="field">
+            <label for="phone">Phone (optional)</label>
+            <input id="phone" type="tel" name="Phone" autocomplete="tel" />
+          </div>
+          <div class="field">
+            <label for="website">Store website <span class="req">*</span></label>
+            <input id="website" type="url" name="Store website" placeholder="https://" required />
+          </div>
+          <div class="field">
+            <label for="platform">E-commerce platform <span class="req">*</span></label>
+            <select id="platform" name="Platform" required>
+              <option value="" selected disabled>Select…</option>
+              <option>Shopify Plus</option>
+              <option>Shopify (standard)</option>
+              <option>WooCommerce</option>
+              <option>Custom checkout</option>
+              <option>POS / in-store</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="volume">Monthly order volume <span class="req">*</span></label>
+            <select id="volume" name="Monthly order volume" required>
+              <option value="" selected disabled>Select…</option>
+              <option>Under 1,000</option>
+              <option>1,000 – 5,000</option>
+              <option>5,000 – 20,000</option>
+              <option>20,000 – 100,000</option>
+              <option>Over 100,000</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="vertical">Product vertical <span class="req">*</span></label>
+            <input id="vertical" type="text" name="Vertical" placeholder="e.g. apparel, health, homewares" required />
+          </div>
+          <div class="field full">
+            <label for="causes">Charities or causes you'd want to support (optional)</label>
+            <input id="causes" type="text" name="Causes of interest" placeholder="e.g. animal welfare, children's health, environment" />
+          </div>
+          <div class="field full">
+            <label for="stage">What are you looking for? <span class="req">*</span></label>
+            <select id="stage" name="Interest level" required>
+              <option value="" selected disabled>Select…</option>
+              <option>Ready to join the pilot</option>
+              <option>Interested — tell me more first</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="message">Anything else? (optional)</label>
+            <textarea id="message" name="Message" placeholder="Tell us about your store, timing, or any questions."></textarea>
+          </div>
+
+          <label class="consent">
+            <input type="checkbox" id="consent" required />
+            <span>I agree to Round-Up API contacting me about the pilot program, and I have read the <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>. <span class="req">*</span></span>
+          </label>
+        </div>
+
+        <button class="submit" type="submit" id="submitBtn">Submit registration</button>
+        <p class="formnote">We'll only use your details to assess pilot fit and get in touch. No spam, ever.</p>
+        <div class="formstatus" id="formStatus" role="status" aria-live="polite"></div>
+      </form>
     </div>
   </div>
 </section>
@@ -700,6 +824,39 @@ footer a{color:#9fc4e0;text-decoration:none}
     });
     svg.innerHTML=g;
   }
+
+  // Pilot form — AJAX submit so the visitor stays on the page
+  (function(){
+    var form=document.getElementById('pilotForm');
+    if(!form) return;
+    var btn=document.getElementById('submitBtn');
+    var status=document.getElementById('formStatus');
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      status.className='formstatus';status.textContent='';
+      btn.disabled=true;btn.textContent='Sending…';
+      var data=new FormData(form);
+      fetch('https://api.web3forms.com/submit',{method:'POST',body:data,headers:{'Accept':'application/json'}})
+        .then(function(r){return r.json();})
+        .then(function(json){
+          if(json.success){
+            form.reset();
+            status.className='formstatus ok';
+            status.textContent='Thanks — your registration is in. We\u2019ll be in touch at the email you provided.';
+            btn.textContent='Submitted ✓';
+          }else{
+            status.className='formstatus err';
+            status.textContent='Something went wrong: '+(json.message||'please try again, or email info@roundupapi.com.');
+            btn.disabled=false;btn.textContent='Submit registration';
+          }
+        })
+        .catch(function(){
+          status.className='formstatus err';
+          status.textContent='Network error — please try again, or email info@roundupapi.com directly.';
+          btn.disabled=false;btn.textContent='Submit registration';
+        });
+    });
+  })();
 </script>
 </body>
 </html>
